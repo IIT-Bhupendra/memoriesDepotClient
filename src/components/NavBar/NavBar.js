@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { AppBar, Avatar, Button, Menu, Toolbar, Typography } from "@mui/material";
-import memories from "../../images/memories.png";
+import { AppBar, Avatar, Button, Toolbar, Typography } from "@mui/material";
+// import memories from "../../images/memories.png";
 import useStyles from "./style";
 import { useDispatch } from "react-redux";
 import { LOGOUT } from "../../constants/actionTypes";

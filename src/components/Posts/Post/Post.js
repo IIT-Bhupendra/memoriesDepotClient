@@ -55,7 +55,7 @@ function Post({ post, setCurrentId }) {
     <Card className={classes.card} style={{ borderRadius: "24px" }}>
       <div className={classes.headBox}>
         <div className={classes.headOne}>
-            <img src={defaultPic} className={classes.headImg}/>
+            <img src={defaultPic} className={classes.headImg} alt="creater avatar"/>
         </div>
         <div className={classes.headTwo}>
             <Typography variant="h6" className={classes.headUser}>{post.name}</Typography>
