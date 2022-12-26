@@ -1,10 +1,10 @@
 import React from "react";
-import { Pagination, PaginationItem } from "@mui/material";
-import { Link } from "react-router-dom";
-import useStyles from "./style";
+// import { Pagination, PaginationItem } from "@mui/material";
+// import { Link } from "react-router-dom";
+// import useStyles from "./style";
 
 const Paginate = () => {
-  const classes = useStyles();
+  // const classes = useStyles();
   return<></>
   // return (
   //   <Pagination

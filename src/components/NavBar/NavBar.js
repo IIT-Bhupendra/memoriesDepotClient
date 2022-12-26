@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { AppBar, Avatar, Button, Toolbar, Typography } from "@mui/material";
-// import memories from "../../images/memories.png";
+import { AppBar, Button, Typography } from "@mui/material";
 import useStyles from "./style";
 import { useDispatch } from "react-redux";
 import { LOGOUT } from "../../constants/actionTypes";
 import decode from "jwt-decode";
+import Submenu from "./Submenu";
 
 const NavBar = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
@@ -56,24 +56,8 @@ const NavBar = () => {
           height="60"
         /> */}
       </div>
-      <Toolbar className={classes.toolbar}>
         {user ? (
-          <div className={classes.profile}>
-            <Avatar
-              className={classes.purple}
-              alt={user.result.name}
-              src={user.result.imageUrl}
-            >
-              {user.result.name.charAt(0)}
-            </Avatar>
-            <Typography className={classes.userName} variant="h6">
-              {user.result.name}
-            </Typography>
-            <Button style={{borderRadius: '12px'}} variant="contained" color="secondary" onClick={logout}>
-              Logout
-            </Button>
-          </div>
-          
+          <Submenu user={user} setUser={setUser} />
         ) : (
           <Button
             style={{borderRadius: '12px'}}
@@ -85,7 +69,6 @@ const NavBar = () => {
             Sign In
           </Button>
         )}
-      </Toolbar>
     </AppBar>
   );
 };

@@ -33,25 +33,39 @@ const Auth = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (isSignUp) {
       dispatch(signup(formData, history));
     } else {
       dispatch(signin(formData, history));
     }
   };
+  
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const handleShowPassword = () =>
+  
+  const handleShowPassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
+  }
+  
   const switchMode = () => setIsSignUp((prevIsSignUp) => !prevIsSignUp);
+  
   const googleSuccess = async (res) => {
     const result = res?.profileObj;
     const token = res?.tokenId;
 
     try {
       dispatch({ type: "AUTH", data: { result, token } });
+      if(isSignUp){
+        const data = {
+          firstName: result.givenName,
+          lastName: result.familyName,
+          email: result.email,
+          password: "type_google#108",
+          confirmPassword: "type_google#108",
+        }
+        dispatch(signup(data, history));
+      }
       history("/");
     } catch (error) {
       console.log(error);
@@ -62,7 +76,7 @@ const Auth = () => {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" style={{padding: 0}}>
       <Paper className={classes.paper} elevation={3}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
@@ -132,7 +146,7 @@ const Auth = () => {
                 startIcon={<Icon />}
                 variant="contained"
               >
-                Google Sign In
+                Google Sign {isSignUp ? 'Up' : 'In'}
               </Button>
             )}
             onSuccess={googleSuccess}
@@ -140,16 +154,10 @@ const Auth = () => {
             cookiePolicy="single_host_origin"
           />
         </form>
-        <Button>
-          <Grid container justifyItems="flex-end">
-            <Grid item>
-              <Button onClick={switchMode}>
-                {isSignUp
-                  ? "Already have an account? Sign In"
-                  : "Don't have an account? Sign Up"}
-              </Button>
-            </Grid>
-          </Grid>
+        <Button onClick={switchMode}>
+          {isSignUp
+            ? "Already have an account? Sign In"
+            : "Don't have an account? Sign Up"}
         </Button>
       </Paper>
     </Container>

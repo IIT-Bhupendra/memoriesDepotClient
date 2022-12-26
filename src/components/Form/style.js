@@ -8,7 +8,13 @@ export default makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(3),
-    borderRadius: "24px"
+    minWidth: "24vw",
+    [theme.breakpoints.down("sm")]: {
+      minWidth: "36vw"
+    },
+    [theme.breakpoints.down("xs")]: {
+      maxWidth: "100%"
+    }
   },
   form: {
     display: "flex",

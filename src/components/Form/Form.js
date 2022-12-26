@@ -7,7 +7,12 @@ import useStyles from "./style";
 
 import { createPost, updatePost } from "../../actions/posts";
 
-const Form = ({ currentId, setCurrentId }) => {
+const Form = ({
+  currentId = null,
+  setCurrentId = null,
+  setModalOpen,
+  setSideMemoPic,
+}) => {
   const post = useSelector((state) =>
     currentId ? state.posts.find((p) => p._id === currentId) : null
   );
@@ -23,43 +28,60 @@ const Form = ({ currentId, setCurrentId }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
 
   useEffect(() => {
-    if (post) setPostData(post);
-  }, [post]);
+    if (post) {
+      setSideMemoPic(post.selectedFile);
+      setPostData(post);
+    }
+  // }, [post]);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (currentId) {
-      dispatch(
-        updatePost(currentId, { ...postData, name: user?.result?.name })
-      );
+      try {
+        dispatch(
+          updatePost(currentId, { ...postData, name: user?.result?.name })
+        );
+      } catch (error) {
+        console.log("Failed to update memory, Please try again!!")
+      }
     } else {
-      dispatch(createPost({ ...postData, name: user?.result?.name }));
+      try {
+        dispatch(createPost({ ...postData, name: user?.result?.name }));
+      } catch (error) {
+        console.log("Failed to create memory, Please try again!!")
+      }
     }
+    setModalOpen(false);
     clear();
   };
   const clear = () => {
-    setPostData({
-      // creator: "",
-      title: "",
-      message: "",
-      tags: "",
-      selectedFile: "",
-    });
-    setCurrentId(null);
+    if(!currentId){
+      console.log("All fields are already empty.")
+    } else {
+      setPostData({
+        // creator: "",
+        title: "",
+        message: "",
+        tags: "",
+        selectedFile: "",
+      });
+      setCurrentId(null);
+    }
   };
   const onDone = ({ base64 }) => {
     setPostData({ ...postData, selectedFile: base64 });
   };
 
-  if (!user?.result?.name) {
-    return (
-      <Paper className={classes.paper}>
-        <Typography variant="h6" align="center">
-          Please Sign In to create your memories and like other's memories.
-        </Typography>
-      </Paper>
-    );
-  }
+  // if (!user?.result?.name) {
+  //   return (
+  //     <Paper className={classes.paper}>
+  //       <Typography variant="h6" align="center">
+  //         Please Sign In to create your memories and like other's memories.
+  //       </Typography>
+  //     </Paper>
+  //   );
+  // }
 
   return (
     <Paper className={classes.paper}>
@@ -72,16 +94,6 @@ const Form = ({ currentId, setCurrentId }) => {
         <Typography variant="h6">
           {currentId ? "Editing" : "Creating"} a Memory
         </Typography>
-        {/* <TextField
-          name="creator"
-          variant="outlined"
-          label="Creator"
-          fullWidth
-          value={postData.creator}
-          onChange={(e) =>
-            setPostData({ ...postData, creator: e.target.value })
-          }
-        ></TextField> */}
         <TextField
           name="title"
           variant="outlined"
@@ -89,6 +101,7 @@ const Form = ({ currentId, setCurrentId }) => {
           fullWidth
           value={postData.title}
           onChange={(e) => setPostData({ ...postData, title: e.target.value })}
+          required
         ></TextField>
         <TextField
           name="message"
@@ -113,10 +126,10 @@ const Form = ({ currentId, setCurrentId }) => {
           }
         ></TextField>
         <div className={classes.fileInput}>
-          <FileBase type="file" multiple={false} onDone={onDone} />
+          <FileBase type="file" multiple={false} onDone={onDone} required/>
         </div>
         <Button
-          style={{borderRadius: '16px'}}
+          style={{ borderRadius: "16px" }}
           sx={{ my: 2 }}
           variant="contained"
           color="primary"
@@ -127,7 +140,7 @@ const Form = ({ currentId, setCurrentId }) => {
           Submit
         </Button>
         <Button
-          style={{borderRadius: '16px'}}
+          style={{ borderRadius: "16px" }}
           variant="contained"
           color="secondary"
           onClick={clear}
