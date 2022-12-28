@@ -6,6 +6,8 @@
 
 Welcome to Memories Depot, a platform for sharing and cataloguing your special memories. With our user-friendly interface, you can easily upload and share your memories with a title, description, and relevant tags. You can also browse through the memories of other users and also like thier memories as well.
 
+![memories-depot-screencap](./src/images/homepage.png)
+
 You just need to follow simple steps to use **Memories Depot:**
     
 - Signup/login *(You can use Google account or any other email as well.)*
@@ -37,9 +39,9 @@ A **fullstack single page web application** based on **MERN** stack.
 
 
 
-
-
 ## 🧑‍💻 Installation (Run locally)
+
+<img align="right" src="https://i.ibb.co/CJfW18H/ship.gif" width="200"/>
 
 - Clone the repository to your local machine:
 
