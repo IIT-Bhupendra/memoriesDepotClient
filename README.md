@@ -16,6 +16,12 @@ You just need to follow simple steps to use **Memories Depot:**
 It's as simple as that. I tried to keep it clean, simple and easy to use.
 
 ## ✍️ Creating Memories at Memories Depot
+<div style="margin-bottom: 50px">
+    <img align="right" src="./src/images/creating-memory.png" width="48%"/>
+    <img align="left" src="./src/images/editing-memory.png" width="48%"/> 
+</div>
+<br />.
+
 Follow these steps to create a new memory.
 - Click on the **create** button *(top-right of the navigation panel)*
 - Use modal popped up, fill in the title, description, tags for the memory.
@@ -27,6 +33,11 @@ Hurray, your memory has been created/added to our Memories Depot.
 
 
 ## 🏗️ Development of Memories Depot Platform
+
+<img align="right" src="https://github.com/tomchen/stack-icons/blob/master/logos/react.svg" alt="react" width="80" height="80"/>
+<img align="right" src="https://github.com/tomchen/stack-icons/blob/master/logos/express.svg" alt="react" width="80" height="80"/>
+<img align="right" src="https://github.com/tomchen/stack-icons/blob/master/logos/mongodb.svg" alt="react" width="80" height="80"/>
+<img align="right" src="https://github.com/tomchen/stack-icons/blob/master/logos/nodejs.svg" alt="react" width="80" height="80"/>
 
 A **fullstack single page web application** based on **MERN** stack.
 
