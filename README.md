@@ -17,9 +17,8 @@ It's as simple as that. I tried to keep it clean, simple and easy to use.
 
 ## ✍️ Creating Memories at Memories Depot
 <div style="float">
-    <img src="./src/images/creating-memory.png" width="470"/>
-    &emsp;
-    <img align="right" style="margin-left: 10px" src="./src/images/editing-memory.png" width="470"/>
+    <img src="./src/images/creating-memory.png" width="40%"/>
+    <img align="right" style="margin-left: 10px" src="./src/images/editing-memory.png" width="40%"/>
 </div>
 <br />
 
