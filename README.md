@@ -16,11 +16,12 @@ You just need to follow simple steps to use **Memories Depot:**
 It's as simple as that. I tried to keep it clean, simple and easy to use.
 
 ## ✍️ Creating Memories at Memories Depot
-<div style="margin-bottom: 50px">
-    <img align="right" src="./src/images/creating-memory.png" width="48%"/>
-    <img align="left" src="./src/images/editing-memory.png" width="48%"/> 
+<div style="float">
+    <img src="./src/images/creating-memory.png" width="470"/>
+    &emsp;
+    <img align="right" style="margin-left: 10px" src="./src/images/editing-memory.png" width="470"/>
 </div>
-<br />.
+<br />
 
 Follow these steps to create a new memory.
 - Click on the **create** button *(top-right of the navigation panel)*
