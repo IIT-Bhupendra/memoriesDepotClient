@@ -1,70 +1,78 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Memories Depot 
+- 👦 **Author:** Bhupendra Singh 
+- 🔮 **My Github's profile:** [@Bhupendra Singh](https://github.com/IIT-Bhupendra)
+## 🤞 Platform to share your memories
 
-## Available Scripts
+Welcome to Memories Depot, a platform for sharing and cataloguing your special memories. With our user-friendly interface, you can easily upload and share your memories with a title, description, and relevant tags. You can also browse through the memories of other users and also like thier memories as well.
 
-In the project directory, you can run:
+![memories-depot-screencap](./src/images/homepage.png)
 
-### `npm start`
+You just need to follow simple steps to use **Memories Depot:**
+    
+- Signup/login *(You can use Google account or any other email as well.)*
+- Start creating your Memories.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+It's as simple as that. I tried to keep it clean, simple and easy to use.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## ✍️ Creating Memories at Memories Depot
+<div style="float">
+    <img src="./src/images/creating-memory.png" width="48%"/>
+    <img align="right" style="margin-left: 10px" src="./src/images/editing-memory.png" width="48%"/>
+</div>
+<br />
 
-### `npm test`
+Follow these steps to create a new memory.
+- Click on the **create** button *(top-right of the navigation panel)*
+- Use modal popped up, fill in the title, description, tags for the memory.
+- **Upload** your image linked to this memory.
+- Click on the **submit** button. that's it.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Hurray, your memory has been created/added to our Memories Depot.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🏗️ Development of Memories Depot Platform
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<img align="right" src="https://github.com/tomchen/stack-icons/blob/master/logos/react.svg" alt="react" width="80" height="80"/>
+<img align="right" src="https://github.com/tomchen/stack-icons/blob/master/logos/express.svg" alt="react" width="80" height="80"/>
+<img align="right" src="https://github.com/tomchen/stack-icons/blob/master/logos/mongodb.svg" alt="react" width="80" height="80"/>
+<img align="right" src="https://github.com/tomchen/stack-icons/blob/master/logos/nodejs.svg" alt="react" width="80" height="80"/>
 
-### `npm run eject`
+A **fullstack single page web application** based on **MERN** stack.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- developed frontend with using ReactJs and Material UI.
+- integrated **Restful API's** for pulling down memories content from the server.
+- for authentication while signup/login we used jwt/google API based on user choice.
+- redux is used to maintain a central state across the application.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Tech's & Stacks** used: ReactJs, ExpressJs, NodeJs, MongoDB, Material UI.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## 🧑‍💻 Installation (Run locally)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<img align="right" src="https://i.ibb.co/CJfW18H/ship.gif" width="200"/>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Clone the repository to your local machine:
 
-### Code Splitting
+    ```bash
+    git clone https://github.com/IIT-Bhupendra/memoriesDepot.git
+    ```
+- Change the directory to the respective project folder:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    ```bash
+    cd memoriesDepot
+    ```
+- Install all the required dependencies:
 
-### Analyzing the Bundle Size
+    ```bash
+    npm install
+    ```
+- Launch and test on localhost
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    ```bash
+    npm start
+    ```
+- Setup environmental variables as described in **.env.sample file**.
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
