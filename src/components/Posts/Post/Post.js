@@ -1,23 +1,16 @@
 import React, { useState } from "react";
-import {
-  IconButton,
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  Tooltip,
-} from "@mui/material";
+import { useDispatch } from "react-redux";
+import moment from "moment";
 import FavoriteSharpIcon from '@mui/icons-material/FavoriteSharp';
 import FavoriteBorderSharpIcon from '@mui/icons-material/FavoriteBorderSharp';
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
 import ArrowDropDownCircleRoundedIcon from '@mui/icons-material/ArrowDropDownCircleRounded';
+import { IconButton, Card, CardContent, CardMedia, Typography, Tooltip, Chip} from "@mui/material";
 import useStyles from "./style";
-import moment from "moment";
-import { deletePost, likePost } from "../../../actions/posts";
-import { useDispatch } from "react-redux";
 import MemoForm from "../../MemoForm/MemoForm";
+import { deletePost, likePost } from "../../../actions/posts";
 
-function Post({ post, setCurrentId }) {
+function Post({ post }) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -99,13 +92,15 @@ function Post({ post, setCurrentId }) {
       <div className={classes.mediaBox}>
         <CardMedia
           className={classes.media}
-          image={post.selectedFile}
+          // image={post.assets.images[0].url}
+          image={(post.selectedFile) ? post.selectedFile : post.assets.images[0].url}
           title={post.title}
         />
         <Tooltip title="Tags" placement="left">
           <div className={classes.tags}>
             <Typography variant="body2" color="textSuccess">
-              {post.tags.map((tag) => `#${tag} `)}
+              {/* {post.tags.map((tag) => `#${tag} `)} */}
+              {post.tags.map((tag) => <Chip label={`#${tag}`} className={classes.tag} />)}
             </Typography>
           </div>
         </Tooltip>

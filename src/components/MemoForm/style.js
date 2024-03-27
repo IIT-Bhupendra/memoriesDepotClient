@@ -26,5 +26,9 @@ export default makeStyles((theme) => ({
     [theme.breakpoints.down("xs")]: {
       display: "none",
     }
+  },
+  closeBtn: {
+    position: "absolute",
+    padding: "10px",
   }
 }));

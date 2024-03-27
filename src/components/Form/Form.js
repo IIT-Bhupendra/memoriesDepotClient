@@ -2,86 +2,115 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { TextField, Button, Paper, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
-import FileBase from "react-file-base64";
 import useStyles from "./style";
+import smp from "../../images/sideModalPic.jpg";
 
 import { createPost, updatePost } from "../../actions/posts";
+import TagsInput from "./TagsInput";
 
 const Form = ({
   currentId = null,
-  setCurrentId = null,
+  setCurrentId,
   setModalOpen,
   setSideMemoPic,
 }) => {
-  const post = useSelector((state) =>
-    currentId ? state.posts.find((p) => p._id === currentId) : null
-  );
-  const [postData, setPostData] = useState({
-    // creator: "",
-    title: "",
-    message: "",
-    tags: "",
-    selectedFile: "",
-  });
   const classes = useStyles();
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
+  const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null);
+
+  const [assetData, setAssetData] = useState(null);
+  const [postData, setPostData] = useState({ title: "", message: "" });
+  const [tags, setTags] = useState(post ? post.tags : []);
 
   useEffect(() => {
     if (post) {
-      setSideMemoPic(post.selectedFile);
+      if(post.selectedFile)
+        setSideMemoPic(post.selectedFile);
+      else
+        setSideMemoPic(post.assets.images[0].url);
       setPostData(post);
     }
-  // }, [post]);
-  }, []);
+  }, [post, setSideMemoPic]);
 
-  const handleSubmit = (e) => {
+  const onChangeImageHandler = (e) => {
+    setAssetData(e.target.files[0]);
+    setSideMemoPic(URL.createObjectURL(e.target.files[0]));
+  }
+
+  const uploadImage = async (image) => {
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "k1ybob8j");
+    data.append("folder", "memories");
+    try {
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/dommzhmwc/image/upload",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+      const file = await res.json();
+      return { status: "success", file };
+    } catch (error) {
+      console.log("Failed to upload image, Please try again!!")
+      return { status: "failed", file: null };
+    }
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (currentId) {
-      try {
-        dispatch(
-          updatePost(currentId, { ...postData, name: user?.result?.name })
-        );
-      } catch (error) {
-        console.log("Failed to update memory, Please try again!!")
+
+    if(!currentId && !assetData){
+      console.log("Please attach atleast one-image.")
+      return;
+    }
+
+    let assets = currentId ? post.assets : null;
+    if(assetData){
+      const { status, file } = await uploadImage(assetData);
+
+      if(status === "failed"){
+        console.log("Failed to upload image, Please try again!!")
+        return;
       }
-    } else {
+
+      assets = { images: [{ public_id: file.public_id, url: file.secure_url }] };
+    }
+
+    if(!currentId) {
       try {
-        dispatch(createPost({ ...postData, name: user?.result?.name }));
+        dispatch(createPost({ ...postData, tags, assets, name: user?.result?.name }));
       } catch (error) {
         console.log("Failed to create memory, Please try again!!")
       }
+    } else {      
+      try {
+        dispatch(updatePost(currentId, { ...postData, tags, assets, name: user?.result?.name }));
+      } catch (error) {
+        console.log("Failed to update memory, Please try again!!")
+      }
     }
+
     setModalOpen(false);
     clear();
   };
+  
   const clear = () => {
-    if(!currentId){
-      console.log("All fields are already empty.")
-    } else {
+    try {
       setPostData({
-        // creator: "",
         title: "",
         message: "",
-        tags: "",
-        selectedFile: "",
       });
-      setCurrentId(null);
+      setAssetData(null);
+      console.log(smp)
+      setSideMemoPic(smp);
+      setTags([]);
+    } catch (error) {
+      console.log(error.message)
     }
   };
-  const onDone = ({ base64 }) => {
-    setPostData({ ...postData, selectedFile: base64 });
-  };
-
-  // if (!user?.result?.name) {
-  //   return (
-  //     <Paper className={classes.paper}>
-  //       <Typography variant="h6" align="center">
-  //         Please Sign In to create your memories and like other's memories.
-  //       </Typography>
-  //     </Paper>
-  //   );
-  // }
 
   return (
     <Paper className={classes.paper}>
@@ -94,7 +123,7 @@ const Form = ({
         <Typography variant="h6">
           {currentId ? "Editing" : "Creating"} a Memory
         </Typography>
-        <TextField
+        <TextField 
           name="title"
           variant="outlined"
           label="Title"
@@ -115,18 +144,13 @@ const Form = ({
             setPostData({ ...postData, message: e.target.value })
           }
         ></TextField>
-        <TextField
-          name="tags"
-          variant="outlined"
-          label="Tags (comma seperated)"
-          fullWidth
-          value={postData.tags}
-          onChange={(e) =>
-            setPostData({ ...postData, tags: e.target.value.split(",") })
-          }
-        ></TextField>
+        <TagsInput tags={tags} setTags={setTags}/>
         <div className={classes.fileInput}>
-          <FileBase type="file" multiple={false} onDone={onDone} required/>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => onChangeImageHandler(e)}
+          />
         </div>
         <Button
           style={{ borderRadius: "16px" }}

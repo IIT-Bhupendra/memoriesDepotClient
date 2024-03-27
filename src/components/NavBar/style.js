@@ -11,7 +11,7 @@ export default makeStyles((theme) => ({
     flexDirection: "row",
     gap: "8px",
     justifyContent: "space-between",
-    margin: "25px 0",
+    margin: "20px 0 8px 0",
     maxWidth: "1536px",
     padding: "8px 36px",
     position: "sticky",
