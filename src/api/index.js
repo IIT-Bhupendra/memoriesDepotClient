@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = (process.env.NODE_ENV === "development") ? process.env.DEV_BASE_URL : process.env.PROD_BASE_URL;
+const baseURL = "https://memoriesdepotserver.onrender.com/";
 
 const API = axios.create({ baseURL });
 

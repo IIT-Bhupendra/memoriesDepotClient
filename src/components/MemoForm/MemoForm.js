@@ -19,7 +19,7 @@ const MemoForm = ({btnText, postId=null, setCurrentId=null}) => {
                 <ModeEditOutlinedIcon />
             </IconButton>
         ) : (
-            <Button onClick={() => setModalOpen(!isModalOpen)}>
+            <Button className={classes.createBtn} onClick={() => setModalOpen(!isModalOpen)}>
                 <Typography>{btnText}</Typography>
             </Button>
         )}

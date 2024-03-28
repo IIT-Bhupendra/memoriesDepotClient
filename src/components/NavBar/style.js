@@ -83,11 +83,14 @@ export default makeStyles((theme) => ({
     background: "rgba(255, 255, 255, 0.8)",
     borderRadius: "24px",
     display: 'flex',
-    gap: '8px',
+    // gap: '8px',
     textAlign: 'center',
   },
   userMenu: {
     background: "rgba(255, 255, 255, 0.8)",
     backdropFilter: "blur(10px)",
+  },
+  Avatar: {
+    // margin: "0"
   }
 }));

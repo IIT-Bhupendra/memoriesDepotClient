@@ -40,32 +40,14 @@ const NavBar = () => {
       align="center"
     >
       <div className={classes.brandContainer}>
-        <Typography
-          component={Link}
-          to="/"
-          className={classes.heading}
-          variant="h2"
-          align="center"
-        >
+        <Typography component={Link} to="/" className={classes.heading} variant="h2" align="center">
           Memories
         </Typography>
-        {/* <img
-          className={classes.image}
-          src={memories}
-          alt="memories"
-          height="60"
-        /> */}
       </div>
         {user ? (
           <Submenu user={user} setUser={setUser} />
         ) : (
-          <Button
-            style={{borderRadius: '12px'}}
-            component={Link}
-            to="/auth"
-            variant="contained"
-            color="primary"
-          >
+          <Button component={Link} to="/auth" variant="contained" color="primary" style={{borderRadius: '12px'}}>
             Sign In
           </Button>
         )}

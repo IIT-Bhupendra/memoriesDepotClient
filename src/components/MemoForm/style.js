@@ -30,5 +30,14 @@ export default makeStyles((theme) => ({
   closeBtn: {
     position: "absolute",
     padding: "10px",
+  },
+  createBtn: {
+    borderRadius: "24px 0 0 24px",
+    marginLeft: "6px",
+    background: "rgb(43,66,114)",
+    color: "white",
+    "&:hover": {
+      background: "rgb(43,66,184)",
+    },
   }
 }));

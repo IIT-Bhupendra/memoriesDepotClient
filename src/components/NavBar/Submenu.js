@@ -31,15 +31,14 @@ export default function Submenu({user, setUser}) {
     <React.Fragment>
       <Box className={classes.menu}>
         <MemoForm btnText={'create'} postId={null}/>
-        {/* <Typography>Profile</Typography> */}
         <Tooltip title="Account settings">
           <IconButton
-            onClick={handleClick}
             size="small"
-            // sx={{ ml: 2 }}
-            aria-controls={open ? 'account-menu' : undefined}
             aria-haspopup="true"
+            onClick={handleClick}
+            aria-controls={open ? 'account-menu' : undefined}
             aria-expanded={open ? 'true' : undefined}
+            className={classes.Avatar}
           >
             <Avatar src={user?.result.imageUrl}>{user?.result.name.charAt(0)}</Avatar>
           </IconButton>
